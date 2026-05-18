@@ -1,5 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
+from wsgiref.validate import check_iterator
+
 
 @dataclass(order=True, frozen=True)
 class Node:
@@ -69,13 +71,16 @@ def extract_min(heap: MinHeap) -> tuple[MinHeap, Node]:
 
         
 def count_frequency(s: str)-> dict[str,int]:
+    new_dict = {}
+    for i in s:
+        new_dict[i] = new_dict.get(i, 0) + 1
+    return new_dict
 
-    pass
+
 
 
 def create_priority_queue(frequency: dict[str, int]) -> MinHeap:
 
-    pass
 
 
 
