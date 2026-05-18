@@ -1,5 +1,8 @@
 from __future__ import annotations
+
+from collections.abc import async_generator
 from dataclasses import dataclass, field
+from statistics import logistic_kernel
 from wsgiref.validate import check_iterator
 
 
@@ -89,7 +92,13 @@ def create_priority_queue(frequency: dict[str, int]) -> MinHeap:
 
 
 def build_tree(priority_queue: MinHeap) -> Node:
-    pass
+    # as long as there's more than one object in the pq, it'll build the tree
+    while len(priority_queue.data) > 1:
+        pass
+
+
+
+
 
 
 
