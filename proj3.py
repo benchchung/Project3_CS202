@@ -80,7 +80,11 @@ def count_frequency(s: str)-> dict[str,int]:
 
 
 def create_priority_queue(frequency: dict[str, int]) -> MinHeap:
-
+    priority_queue = MinHeap()
+    for character, frequency in frequency.items():
+        node = Node(frequency, character)
+        priority_queue = insert(priority_queue, node)
+    return priority_queue
 
 
 
