@@ -91,10 +91,14 @@ def create_priority_queue(frequency: dict[str, int]) -> MinHeap:
 
 
 
-def build_tree(priority_queue: MinHeap) -> Node:
+def build_tree_from_queue(priority_queue: MinHeap) -> Node:
     # as long as there's more than one object in the pq, it'll build the tree
     while len(priority_queue.data) > 1:
-        pass
+        priority_queue, left = extract_min(priority_queue)
+        priority_queue, right = extract_min(priority_queue)
+        fusion = Node(left.freq + right.freq, left.char + right.char, left, right)
+        priority_queue = insert(priority_queue, fusion)
+    return priority_queue.data[0]
 
 
 
