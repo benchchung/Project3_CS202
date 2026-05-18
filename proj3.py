@@ -60,7 +60,11 @@ def heapify_down(heap: MinHeap, index: int) -> MinHeap:
 
 
 def extract_min(heap: MinHeap) -> tuple[MinHeap, Node]:
-
+    min_value = minheap.heap[0]
+    last_value = minheap.heap[-1]
+    new_heap = [last_value] + minheap.heap[1:-1]
+    new_heap = heapify_down(new_heap, 0)
+    return min_value, MinHeap(heap=new_heap)
 
 
         
