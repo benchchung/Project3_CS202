@@ -16,7 +16,7 @@ class MinHeap:
     data: list[Node] = field(default_factory=list)
 
 def heapify_up(heap: MinHeap, index: int) -> MinHeap:
-
+    pass
 
 def insert(heap: MinHeap, element: Node) -> MinHeap:
 
