@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from idlelib.debugger_r import restart_subprocess_debugger
 
 
 @dataclass(order=True, frozen=True)
@@ -127,7 +128,18 @@ def encode(s: str, codes: dict)-> str:
 
 
 def decode(encoded_string: str, root: Node):
-    pass
+    current = root
+    result = ""
+    for bit in encoded_string:
+        if bit == "0":
+            current = current.left
+        else:
+            current = current.right
+        if current.left is None and current.right is None:
+            result += current.char
+            current = root
+    return result
+
 
 def huffman_encoding(s:str):
     #Do Not Change this function
