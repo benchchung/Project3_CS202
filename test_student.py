@@ -13,6 +13,11 @@ class TestBenStudent(unittest.TestCase):
         self.assertEqual(heap.data[0].freq, 5)
         self.assertEqual(len(heap.data), 1)
 
+    def test_extract_min(self):
+        heap = MinHeap([Node(2, 'b'), Node(5, 'a')])
+        result = extract_min(heap)
+        self.assertEqual(result[1].freq, 2)
+        self.assertEqual(len(result[0].data), 1)
 
 
 
