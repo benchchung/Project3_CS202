@@ -1,8 +1,9 @@
 import unittest
-import proj3
+from proj3 import *
 
 class TestBenStudent(unittest.TestCase):
-    pass
+    def test_heapify_up(self):
+        heap = MinHeap()
 
 
 if __name__ == "__main__":
