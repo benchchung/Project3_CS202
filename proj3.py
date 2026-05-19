@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from idlelib.debugger_r import restart_subprocess_debugger
-
 
 @dataclass(order=True, frozen=True)
 class Node:
@@ -63,6 +61,8 @@ def heapify_down(heap: MinHeap, index: int) -> MinHeap:
 
 
 def extract_min(heap: MinHeap) -> tuple[MinHeap, Node]:
+    if len(heap.data) == 1:
+        return MinHeap([]), heap.data[0]
     min_value = heap.data[0]
     last_value = heap.data[-1]
     new_heap = [last_value] + heap.data[1:-1]
