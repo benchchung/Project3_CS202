@@ -19,6 +19,19 @@ class TestBenStudent(unittest.TestCase):
         self.assertEqual(result[1].freq, 2)
         self.assertEqual(len(result[0].data), 1)
 
+    def test_single_char(self):
+        result = huffman_encoding("aaaa")
+        self.assertEqual(result[1], "aaaa")
+        self.assertEqual(len(result[2]), 1)
+
+    def test_code_lengths(self):
+        result = huffman_encoding("abcd")
+        self.assertGreater(len(result[2]), 0)
+
+    def test_repeated(self):
+        result = huffman_encoding("aabb")
+        self.assertEqual(result[1], "aabb")
+
 
 
 if __name__ == "__main__":

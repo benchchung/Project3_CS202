@@ -111,7 +111,10 @@ def generate_codes(node: Node | None, prefix="", code: dict | None =None)-> dict
     if node is None:
         return code
     if node.left is None and node.right is None: #leaf node checker
-        code[node.char] = prefix
+        if prefix == "":
+            code[node.char] = "0" #edge case for root = leaf
+        else:
+            code[node.char] = prefix
         return code
     generate_codes(node.left, prefix + "0", code) #dfs
     generate_codes(node.right, prefix + "1", code)
@@ -130,6 +133,10 @@ def encode(s: str, codes: dict)-> str:
 def decode(encoded_string: str, root: Node):
     current = root
     result = ""
+
+    if root.left is None and root.right is None: #edge case where the root is a leaf, so theres no tree to traverse
+        return root.char * len(encoded_string)
+
     for bit in encoded_string:
         if bit == "0":
             current = current.left
