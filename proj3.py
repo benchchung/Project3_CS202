@@ -122,9 +122,8 @@ def encode(s: str, codes: dict)-> str:
     code = []
 
     for key in s:
-        data = codes.get(key)
-        code.append(data)
-    return data
+        code.append(codes.get(key))
+    return "".join(code)
 
 
 def decode(encoded_string: str, root: Node):
