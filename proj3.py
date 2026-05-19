@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import async_generator
 from dataclasses import dataclass, field
-from statistics import logistic_kernel
-from wsgiref.validate import check_iterator
 
 
 @dataclass(order=True, frozen=True)
@@ -110,7 +107,14 @@ def build_tree_from_queue(priority_queue: MinHeap) -> Node:
 def generate_codes(node: Node | None, prefix="", code: dict | None =None)-> dict:
     if code is None:
         code = {}  
-    pass
+    if node is None:
+        return code
+    if node.left is None and node.right is None: #leaf node checker
+        code[node.char] = prefix
+        return code
+    generate_codes(node.left, prefix + "0", code) #dfs
+    generate_codes(node.right, prefix + "1", code)
+    return code
 
 
 def encode(s: str, codes: dict)-> str:
