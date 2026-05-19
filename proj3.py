@@ -24,10 +24,8 @@ def heapify_up(heap: MinHeap, index: int) -> MinHeap:
 
     parent = (index - 1) // 2
 
-    if new_heap[index] < new_heap[parent]:
-        temp = new_heap[index]
-        new_heap[index] = new_heap[parent]
-        new_heap[parent] = temp
+    if new_heap[index] < new_heap[parent]: #editted to create a new list
+        new_heap = new_heap[:parent] + [new_heap[index]] + new_heap[parent+1:index] + [new_heap[parent]] + new_heap[index+1:]
         return heapify_up(MinHeap(new_heap), parent)
 
     return MinHeap(new_heap)
@@ -48,13 +46,11 @@ def heapify_down(heap: MinHeap, index: int) -> MinHeap:
 
     smallest = left
 
-    if right < size and new_heap[right] < new_heap[left]:
+    if right < size and new_heap[right] < new_heap[left]: #editted to create a new list
         smallest = right
 
     if new_heap[smallest] < new_heap[index]:
-        temp = new_heap[index]
-        new_heap[index] = new_heap[smallest]
-        new_heap[smallest] = temp
+        new_heap = new_heap[:index] + [new_heap[smallest]] + new_heap[index+1:smallest] + [new_heap[index]] + new_heap[smallest+1:]
         return heapify_down(MinHeap(new_heap), smallest)
 
     return MinHeap(new_heap)
@@ -123,11 +119,11 @@ def generate_codes(node: Node | None, prefix="", code: dict | None =None)-> dict
 
 
 def encode(s: str, codes: dict)-> str:
-    code = []
+    code = ""
 
     for key in s:
-        code.append(codes.get(key))
-    return "".join(code)
+        code = code + codes.get(key)
+    return code
 
 
 def decode(encoded_string: str, root: Node):
