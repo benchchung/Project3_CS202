@@ -114,11 +114,17 @@ def generate_codes(node: Node | None, prefix="", code: dict | None =None)-> dict
         return code
     generate_codes(node.left, prefix + "0", code) #dfs
     generate_codes(node.right, prefix + "1", code)
+
     return code
 
 
 def encode(s: str, codes: dict)-> str:
-    pass
+    code = []
+
+    for key in s:
+        data = codes.get(key)
+        code.append(data)
+    return data
 
 
 def decode(encoded_string: str, root: Node):
